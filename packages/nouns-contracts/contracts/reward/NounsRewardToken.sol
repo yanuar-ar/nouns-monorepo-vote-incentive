@@ -36,6 +36,7 @@ contract NounsRewardToken is ERC20, ERC20Burnable, Ownable {
         _mint(to, amount);
     }
 
+    // claimreward
     function claimReward(uint256 proposalId) public {
         require(claimedProposal[proposalId][msg.sender] == 0, 'Proposal already claimed');
 
@@ -54,4 +55,20 @@ contract NounsRewardToken is ERC20, ERC20Burnable, Ownable {
     }
 
     // claimreward
+    function unclaimedProposal() external view returns (uint256[] memory) {
+        uint256[] memory proposals;
+        uint256 proposalCount = NounsDAOLogicV1.proposalCount();
+        uint256 index = 0;
+
+        for (uint256 i = 0; i < proposalCount; i++) {
+            uint96 votes = NounsDAOLogicV1.getReceipt(i, msg.sender).votes;
+
+            if (votes > 0 && claimedProposal[i][msg.sender] == 0) {
+                proposals[index] = i;
+                index++;
+            }
+        }
+
+        return proposals;
+    }
 }
