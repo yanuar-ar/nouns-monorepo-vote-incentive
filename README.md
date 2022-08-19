@@ -2,6 +2,8 @@
 
 Holder who vote will get ERC20 token and Soul Bound Token (Non-transferable ERC1155). Incentive token can be traded in Reward Marketplace.
 
+The contracts in the "reward" folder.
+
 Nouns DAO is a generative avatar art collective run by a group of crypto misfits.
 
 ## Contributing
